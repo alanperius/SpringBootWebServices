@@ -1,10 +1,10 @@
 package com.alan.rest.webservices.resfulwebservices;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ResfulWebServicesApplicationTests {
+class RestfulWebServicesApplicationTests {
 
     @Test
     void contextLoads() {
