@@ -32,7 +32,7 @@ public class SwaggerConfig {
             );
 
     private static final Set<String> DEFAULT_PRODUCES_CONSUMES =
-            new HashSet<String>(Arrays.asList("application/json",
+            new HashSet<>(Arrays.asList("application/json",
                     "application/xml"));
 
 
