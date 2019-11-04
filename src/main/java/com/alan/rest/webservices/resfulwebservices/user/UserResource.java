@@ -1,21 +1,18 @@
 package com.alan.rest.webservices.resfulwebservices.user;
 
-import com.alan.rest.webservices.resfulwebservices.helloword.HelloWord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.net.URI;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 
 @RestController
 public class UserResource {
@@ -35,7 +32,7 @@ public class UserResource {
         if (!user.isPresent())
             throw new UserNotFoundException("id-" + id);
 
-        Resource<User> resource = new Resource<User>(user.get());
+        Resource<User> resource = new Resource<>(user.get());
         ControllerLinkBuilder allUsers = linkTo(methodOn(this.getClass()).retrieveAllUsers());
         ControllerLinkBuilder getUser = linkTo(methodOn(this.getClass()).retrieveUser(user.get().getId()));
         resource.add(allUsers.withRel("all-users"));
@@ -59,8 +56,7 @@ public class UserResource {
 
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@RequestBody User user) {
-        User savedUser = new User();
-        savedUser = userRepository.save(user);
+        User savedUser = userRepository.save(user);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
